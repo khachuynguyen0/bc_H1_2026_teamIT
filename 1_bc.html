@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo Cáo Tổng Quan Hiệu Suất IT 6 Tháng Đầu Năm - An Phú Việt eParking</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#0f172a',
+                            blue: '#1d4ed8',
+                            emerald: '#10b981',
+                            amber: '#f59e0b',
+                            slateBg: '#f8fafc',
+                            border: '#e2e8f0',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f1f5f9;
+            overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        
+        /* 16:9 Aspect Ratio Container for Professional Slide Deck */
+        .slide-deck {
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16 / 9;
+            margin: 2rem auto 1rem auto;
+            background-color: #ffffff;
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.05), 0 8px 16px -8px rgba(0, 0, 0, 0.05);
+            border-radius: 1.25rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Responsive scaling down for smaller desktop screens */
+        @media (max-width: 1250px) {
+            .slide-deck {
+                margin: 1rem;
+                max-width: calc(100% - 2rem);
+            }
+        }
+
+        /* Slide Frame Styling */
+        .slide-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 3rem 4rem;
+            background-color: #ffffff;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-frame.active {
+            display: flex;
+            animation: slideInFade 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideInFade {
+            from {
+                opacity: 0;
+                transform: scale(0.99) translateY(4px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Navigation bullets */
+        .bullet {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #cbd5e1;
+            transition: all 0.3s ease;
+        }
+
+        .bullet.active {
+            background-color: #1d4ed8;
+            width: 24px;
+            border-radius: 9999px;
+        }
+
+        /* Custom progress ring animation */
+        .pulse-ring {
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% {
+                transform: scale(0.95);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.6);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 flex flex-col justify-between min-h-screen">
+
+    <!-- Main 16:9 Interactive Slide Frame Wrapper -->
+    <div class="slide-deck" id="deck-wrapper">
+
+        <!-- SLIDE 1: TRANG BÌA (Cover Slide) -->
+        <div class="slide-frame active" id="slide-1">
+            <!-- Top Corporate Header -->
+            <div class="flex justify-between items-center w-full border-b border-slate-100 pb-4">
+                <div class="flex items-center gap-3">
+                    <img src="https://cdn1.vieclam24h.vn/images/old_employer_avatar/images/7acdca7dcdaceade47917640e20b5b42_1573701763_logorong_min1.w-240.h-240.png" 
+                         alt="An Phú Việt Logo" 
+                         class="w-12 h-12 object-contain"
+                         onerror="this.src='https://placehold.co/120x120/ffffff/1d4ed8?text=APV'">
+                    <div class="leading-none">
+                        <span class="font-extrabold text-slate-900 tracking-wider text-sm uppercase block">AN PHÚ VIỆT</span>
+                        <span class="text-[11px] text-blue-700 font-bold uppercase tracking-widest block mt-0.5">ePARKING CLOUD</span>
+                    </div>
+                </div>
+                <div class="px-3.5 py-1 rounded-full bg-slate-50 text-slate-500 text-[10px] font-bold tracking-wider uppercase border border-slate-200/60 flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 pulse-ring"></span> Báo cáo 6 tháng đầu năm
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="my-auto grid grid-cols-12 gap-8 items-center">
+                <div class="col-span-8 space-y-6">
+                    <div class="space-y-3.5">
+                        <div class="inline-flex items-center gap-2 bg-blue-50 border border-blue-100/80 text-blue-700 px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-widest">
+                            <i class="fa-solid fa-chart-pie"></i> BÁO CÁO TỔNG QUAN HIỆU SUẤT IT
+                        </div>
+                        <h1 class="text-4xl font-black text-slate-900 leading-tight tracking-tight">
+                            Hành Trình Số Hóa <br>
+                            &amp; <span class="bg-gradient-to-r from-blue-700 to-indigo-600 bg-clip-text text-transparent">Đột Phá Công Nghệ eParking</span>
+                        </h1>
+                        <p class="text-slate-500 text-sm max-w-xl leading-relaxed">
+                            Tổng kết kết quả vận hành hệ thống, tối ưu quy trình nghiệp vụ và nghiên cứu đột phá R&amp;D từ ngày <strong class="text-slate-700">01/01 đến 01/07/2026</strong>.
+                        </p>
+                    </div>
+
+                    <!-- Meta Tags Row -->
+                    <div class="flex items-center gap-6 text-xs text-slate-500 font-semibold pt-2 border-t border-slate-100">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-calendar text-blue-700 text-sm"></i>
+                            <span>Chu kỳ: <strong class="text-slate-800">1/1 -> 1/7/2026</strong></span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-code text-emerald-600 text-sm"></i>
+                            <span>Tác giả: <strong class="text-slate-800">Team IT An Phú Việt</strong></span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-clock-rotate-left text-indigo-500 text-sm"></i>
+                            <span>Mã số: <strong class="text-slate-800">20260707_1010</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphic Element on the right -->
+                <div class="col-span-4 relative flex justify-center">
+                    <div class="w-72 h-72 bg-slate-50/50 rounded-full border border-slate-100 flex items-center justify-center relative shadow-sm">
+                        <!-- Abstract Concentric Circles & Parking Node Icon representation -->
+                        <svg class="w-56 h-56 text-slate-200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="100" cy="100" r="85" fill="none" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="8 6"/>
+                            <circle cx="100" cy="100" r="55" fill="none" stroke="#e2e8f0" stroke-width="1.5"/>
+                            <circle cx="100" cy="100" r="25" fill="#eff6ff"/>
+                            <path d="M70 100h60M100 70v60" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 3"/>
+                            <!-- P icon -->
+                            <rect x="88" y="85" width="24" height="30" rx="4" fill="#1d4ed8" />
+                            <text x="100" y="106" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="900" text-anchor="middle">P</text>
+                            <!-- Cloud Overhead representation -->
+                            <path d="M120 70a14 14 0 0 0-26-4 11 11 0 0 0-18 8 13 13 0 0 0 2 26h42a14 14 0 0 0 0-30z" fill="#3b82f6" fill-opacity="0.08" stroke="#1d4ed8" stroke-width="1.5"/>
+                        </svg>
+                        <div class="absolute top-12 left-10 bg-white p-2 rounded-xl border border-slate-200/80 shadow-sm">
+                            <i class="fa-solid fa-server text-blue-700 text-base"></i>
+                        </div>
+                        <div class="absolute bottom-12 right-10 bg-white p-2 rounded-xl border border-slate-200/80 shadow-sm">
+                            <i class="fa-solid fa-signal text-emerald-500 text-base"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer slide status -->
+            <div class="flex justify-between items-center w-full border-t border-slate-100 pt-3 text-xs text-slate-400 font-medium">
+                <div>An Phú Việt - Hệ Thống Đỗ Xe Thông Minh Cloud eParking</div>
+                <div class="font-mono text-slate-500">Mã BC: APV_2026_01</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: TỔNG QUAN HỆ SINH THÁI DỰ ÁN (Sơ đồ trình bày) -->
+        <div class="slide-frame" id="slide-2">
+            <!-- Header -->
+            <div class="flex justify-between items-center w-full border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-3">
+                    <img src="https://cdn1.vieclam24h.vn/images/old_employer_avatar/images/7acdca7dcdaceade47917640e20b5b42_1573701763_logorong_min1.w-240.h-240.png" alt="APV Logo" class="w-8 h-8 object-contain">
+                    <span class="font-extrabold text-slate-900 text-xs uppercase tracking-wider">Tổng Quan Bản Đồ Triển Khai 6 Tháng</span>
+                </div>
+                <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Sơ đồ mạng lưới dự án</span>
+            </div>
+
+            <!-- Content Area -->
+            <div class="my-auto space-y-4">
+                <div class="text-left space-y-0.5">
+                    <h2 class="text-2xl font-black text-slate-900">Hệ Sinh Thái Khách Hàng eParking</h2>
+                    <p class="text-slate-500 text-xs">Cơ cấu phân cấp triển khai giữa nhóm <strong class="text-slate-700">3 Dự án Trọng điểm</strong> và <strong class="text-slate-700">11 Dự án Phụ trợ/Vận hành</strong>.</p>
+                </div>
+
+                <!-- Custom Visual Map Tree -->
+                <div class="grid grid-cols-12 gap-5 items-stretch pt-2">
+                    <!-- Left: 3 Core Highlights (BV 108, BV 175, Heineken) -->
+                    <div class="col-span-5 bg-slate-50 border border-slate-200/80 rounded-2xl p-4 flex flex-col justify-between">
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-2">
+                                <span class="flex h-2 w-2 rounded-full bg-blue-700"></span>
+                                <h3 class="font-extrabold text-xs text-slate-800 uppercase tracking-wider">3 Dự Án Trọng Điểm Nổi Bật</h3>
+                            </div>
+                            <p class="text-[10px] text-slate-500">Các siêu bãi xe có yêu cầu phức tạp về bảo mật và vận hành công nghệ cao.</p>
+                        </div>
+
+                        <!-- Card list -->
+                        <div class="space-y-2 mt-3">
+                            <div class="bg-white border border-slate-150 rounded-xl p-2.5 flex items-center gap-3 shadow-sm">
+                                <div class="w-8 h-8 rounded-lg bg-blue-700 text-white flex items-center justify-center font-extrabold text-xs shrink-0">108</div>
+                                <div class="truncate">
+                                    <h4 class="font-bold text-slate-800 text-xs">Bệnh viện Trung ương Quân đội 108</h4>
+                                    <p class="text-[9px] text-slate-500 font-semibold">5 Trạm Ô tô | 4 Trạm xe máy | 3500+ Vé QR</p>
+                                </div>
+                            </div>
+                            <div class="bg-white border border-slate-150 rounded-xl p-2.5 flex items-center gap-3 shadow-sm">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-extrabold text-xs shrink-0">175</div>
+                                <div class="truncate">
+                                    <h4 class="font-bold text-slate-800 text-xs">Bệnh viện Quân y 175</h4>
+                                    <p class="text-[9px] text-slate-500 font-semibold">3 Trạm Ô tô | Bảng LED đa sắc | Xe vào/ra auto</p>
+                                </div>
+                            </div>
+                            <div class="bg-white border border-slate-150 rounded-xl p-2.5 flex items-center gap-3 shadow-sm">
+                                <div class="w-8 h-8 rounded-lg bg-amber-500 text-white flex items-center justify-center font-extrabold text-xs shrink-0">HKN</div>
+                                <div class="truncate">
+                                    <h4 class="font-bold text-slate-800 text-xs">Đại siêu nhà máy Heineken</h4>
+                                    <p class="text-[9px] text-slate-500 font-semibold">5 Nhà máy toàn quốc | Mở rộng Controller | Vé tháng</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Middle: Node Links representation -->
+                    <div class="col-span-1 flex flex-col justify-center items-center relative">
+                        <div class="h-full w-0.5 border-l border-dashed border-slate-200 absolute left-1/2 -translate-x-1/2"></div>
+                        <div class="w-8 h-8 rounded-full bg-blue-50 border border-blue-200 text-blue-700 flex items-center justify-center text-xs z-10 shadow-sm">
+                            <i class="fa-solid fa-link"></i>
+                        </div>
+                    </div>
+
+                    <!-- Right: Group of 11 smaller projects listed cleanly -->
+                    <div class="col-span-6 bg-white border border-slate-200 rounded-2xl p-4 flex flex-col justify-between">
+                        <div class="space-y-1">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="flex h-2 w-2 rounded-full bg-slate-600"></span>
+                                    <h3 class="font-extrabold text-xs text-slate-800 uppercase tracking-wider">11 Dự Án Kể Lướt Qua &amp; Hạ Tầng</h3>
+                                </div>
+                                <span class="bg-slate-100 text-slate-600 text-[9px] font-bold px-1.5 py-0.5 rounded">Vận hành đồng bộ</span>
+                            </div>
+                            <p class="text-[10px] text-slate-500">Các bãi đỗ xe thuộc khối chung cư, trung tâm y tế và ứng dụng di động.</p>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2 mt-3 text-[10px] font-semibold text-slate-600">
+                            <div class="bg-slate-50 p-2 rounded-lg flex items-center gap-2 border border-slate-100">
+                                <i class="fa-solid fa-industry text-indigo-500 text-xs shrink-0"></i>
+                                <span class="truncate">Nhà máy Hà Nam</span>
+                            </div>
+                            <div class="bg-slate-50 p-2 rounded-lg flex items-center gap-2 border border-slate-100">
+                                <i class="fa-solid fa-building text-indigo-500 text-xs shrink-0"></i>
+                                <span class="truncate">Chung cư Richstar</span>
+                            </div>
+                            <div class="bg-slate-50 p-2 rounded-lg flex items-center gap-2 border border-slate-100">
+                                <i class="fa-solid fa-hotel text-indigo-500 text-xs shrink-0"></i>
+                                <span class="truncate">Chung cư Trung Kính</span>
+                            </div>
+                            <div class="bg-slate-50 p-2 rounded-lg flex items-center gap-2 border border-slate-100">
+                                <i class="fa-solid fa-truck text-indigo-500 text-xs shrink-0"></i>
+                                <span class="truncate">Hải Pha (Trạm cân)</span>
+                            </div>
+                            <div class="bg-slate-50 p-2 rounded-lg flex items-center gap-2 border border-slate-100">
+                                <i class="fa-solid fa-mountain text-indigo-500 text-xs shrink-0"></i>
+                                <span class="truncate">KDL Thạch Động</span>
+                            </div>
+                            <div class="bg-slate-50 p-2 rounded-lg flex items-center gap-2 border border-slate-100">
+                                <i class="fa-solid fa-microchip text-indigo-500 text-xs shrink-0"></i>
+                                <span class="truncate">Nhà máy Mabuchi</span>
+                            </div>
+                            <div class="bg-slate-50 p-2 rounded-lg flex items-center gap-2 border border-slate-100">
+                                <i class="fa-solid fa-hospital-user text-indigo-500 text-xs shrink-0"></i>
+                                <span class="truncate">TTYT Lạc Thủy</span>
+                            </div>
+                            <div class="bg-slate-50 p-2 rounded-lg flex items-center gap-2 border border-slate-100">
+                                <i class="fa-solid fa-bus text-indigo-500 text-xs shrink-0"></i>
+                                <span class="truncate">Bến xe Ninh Kiều</span>
+                            </div>
+                            <div class="bg-slate-50 p-2 rounded-lg flex items-center gap-2 border border-slate-100">
+                                <i class="fa-solid fa-baby-carriage text-indigo-500 text-xs shrink-0"></i>
+                                <span class="truncate">Bệnh viện Nhi</span>
+                            </div>
+                            <div class="bg-slate-50 p-2 rounded-lg flex items-center gap-2 border border-slate-100">
+                                <i class="fa-solid fa-tower-observation text-indigo-500 text-xs shrink-0"></i>
+                                <span class="truncate">Triển lãm SECC</span>
+                            </div>
+                        </div>
+
+                        <!-- eGo App footer node -->
+                        <div class="mt-2.5 bg-blue-50 border border-blue-100 p-2 rounded-xl flex items-center gap-2 justify-center">
+                            <i class="fa-solid fa-mobile-screen-button text-blue-700 text-xs"></i>
+                            <span class="text-[10px] text-blue-950 font-bold">Ứng dụng di động eGo (Tái kiến trúc 2026)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="flex justify-between items-center w-full border-t border-slate-100 pt-3 text-xs text-slate-400 font-medium">
+                <div>Phân loại dự án theo mô hình mạng lưới chuyển giao công nghệ</div>
+                <div>Trang 02/11</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: DỰ ÁN TRỌNG ĐIỂM - BỆNH VIỆN 108 -->
+        <div class="slide-frame" id="slide-3">
+            <!-- Header -->
+            <div class="flex justify-between items-center w-full border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-3">
+                    <img src="https://cdn1.vieclam24h.vn/images/old_employer_avatar/images/7acdca7dcdaceade47917640e20b5b42_1573701763_logorong_min1.w-240.h-240.png" alt="APV Logo" class="w-8 h-8 object-contain">
+                    <span class="font-extrabold text-slate-900 text-xs uppercase tracking-wider">I. Dự án trọng điểm</span>
+                </div>
+                <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Đại dự án Quốc gia</span>
+            </div>
+
+            <!-- Content Area -->
+            <div class="my-auto grid grid-cols-12 gap-6 items-center">
+                <!-- Left Column -->
+                <div class="col-span-7 space-y-4">
+                    <div class="space-y-1">
+                        <div class="inline-flex items-center gap-1.5 bg-blue-50 border border-blue-100 text-blue-700 px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wide">
+                            <i class="fa-solid fa-hospital"></i> Bệnh viện Trung ương Quân đội 108
+                        </div>
+                        <h2 class="text-2xl font-black text-slate-900">Bãi Xe Thông Minh Quy Mô 9 Trạm</h2>
+                        <p class="text-slate-500 text-xs leading-relaxed">
+                            Vận hành liên tục <strong class="text-slate-800">5 Trạm Ô tô &amp; 4 Trạm xe máy</strong>. Hệ thống giải quyết trọn vẹn lưu lượng xe khổng lồ và áp lực quản trị bãi giữ xe thông suốt 24/7.
+                        </p>
+                    </div>
+
+                    <!-- Highlight Bullet Cards -->
+                    <div class="grid grid-cols-2 gap-3 pt-1">
+                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-3 space-y-1">
+                            <h4 class="font-bold text-slate-800 text-xs flex items-center gap-1.5">
+                                <i class="fa-solid fa-wallet text-blue-700"></i> Thanh toán tích hợp
+                            </h4>
+                            <p class="text-[10px] text-slate-500 leading-normal">Hỗ trợ ngân hàng <strong>PVcombank</strong> &amp; kết nối thẻ định danh <strong>ePass</strong> (thu tiền không dừng tiện lợi).</p>
+                        </div>
+                        <div class="bg-slate-50 border border-slate-150 rounded-xl p-3 space-y-1">
+                            <h4 class="font-bold text-slate-800 text-xs flex items-center gap-1.5">
+                                <i class="fa-solid fa-truck-medical text-emerald-600"></i> Làn ưu tiên tự động
+                            </h4>
+                            <p class="text-[10px] text-slate-500 leading-normal">Nhận diện, giải phóng barrier lập tức cho xe ưu tiên: Cấp cứu, xe biển xanh, biển đỏ.</p>
+                        </div>
+                    </div>
+
+                    <!-- Kế thừa -->
+                    <div class="bg-blue-50/50 border border-blue-100 p-2.5 rounded-xl flex items-center gap-2.5 text-[10px] text-blue-900 font-semibold">
+                        <span class="bg-blue-100 text-blue-700 text-[8px] font-extrabold px-1.5 py-0.5 rounded uppercase shrink-0">Kế thừa</span>
+                        <p class="leading-normal">
+                            Nền tảng lõi được chuyển giao thành công cho: <strong>Ninh Kiều, BV 175, Bệnh viện Nhi, SECC</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Column (Visual Phone Mockup / QR VIP) -->
+                <div class="col-span-5 flex flex-col items-center">
+                    <div class="w-60 bg-slate-50 border border-slate-200/80 rounded-[2rem] p-3 shadow-md relative overflow-hidden">
+                        <!-- Speaker & Camera notch -->
+                        <div class="w-20 h-3 bg-slate-200 rounded-full mx-auto mb-2 flex items-center justify-center">
+                            <span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                        </div>
+                        
+                        <!-- Screen Content -->
+                        <div class="bg-white rounded-[1.5rem] p-3.5 border border-slate-100 space-y-3">
+                            <div class="flex justify-between items-center text-[8px] text-slate-400 font-bold">
+                                <span>10:10 AM</span>
+                                <i class="fa-solid fa-battery-full text-emerald-500"></i>
+                            </div>
+                            
+                            <!-- Mock QR App Header -->
+                            <div class="text-center">
+                                <h4 class="text-[11px] font-black text-slate-800">Cấp Phát &amp; Quét QR VIP</h4>
+                                <p class="text-[8px] text-slate-500">Kích hoạt thông xe ra miễn phí tự động</p>
+                            </div>
+
+                            <!-- QR Code SVG -->
+                            <div class="border border-slate-100 rounded-xl p-2 bg-slate-50 flex flex-col items-center justify-center space-y-1">
+                                <div class="w-20 h-20 bg-white border border-slate-200 rounded p-1 flex items-center justify-center">
+                                    <svg class="w-full h-full text-slate-800" viewBox="0 0 100 100" fill="currentColor">
+                                        <rect x="5" y="5" width="25" height="25" stroke="black" stroke-width="3" fill="none"/>
+                                        <rect x="70" y="5" width="25" height="25" stroke="black" stroke-width="3" fill="none"/>
+                                        <rect x="5" y="70" width="25" height="25" stroke="black" stroke-width="3" fill="none"/>
+                                        <rect x="40" y="40" width="20" height="20" />
+                                        <rect x="40" y="10" width="10" height="20" />
+                                        <rect x="10" y="40" width="20" height="10" />
+                                        <rect x="70" y="70" width="25" height="25" />
+                                    </svg>
+                                </div>
+                                <span class="text-[8px] font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-full">Đã đối khớp biển số</span>
+                            </div>
+
+                            <!-- Ticket Stats -->
+                            <div class="grid grid-cols-2 gap-1.5 text-center text-[9px]">
+                                <div class="bg-blue-50/50 p-1.5 rounded-lg">
+                                    <p class="text-slate-400">Đã in vé</p>
+                                    <p class="font-bold text-blue-700">3,500+</p>
+                                </div>
+                                <div class="bg-emerald-50/50 p-1.5 rounded-lg">
+                                    <p class="text-slate-400">Đã sử dụng</p>
+                                    <p class="font-bold text-emerald-700">490 vé</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-[10px] text-slate-500 font-bold mt-2 text-center">
+                        <i class="fa-solid fa-circle-check text-blue-700"></i> Nâng cao hình ảnh uy tín và sự chuyên nghiệp
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="flex justify-between items-center w-full border-t border-slate-100 pt-3 text-xs text-slate-400 font-medium">
+                <div>Giải pháp QR VIP cho phép thông bãi tự động qua camera điện thoại di động</div>
+                <div>Trang 03/11</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: DỰ ÁN TRỌNG ĐIỂM - BỆNH VIỆN 175 -->
+        <div class="slide-frame" id="slide-4">
+            <!-- Header -->
+            <div class="flex justify-between items-center w-full border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-3">
+                    <img src="https://cdn1.vieclam24h.vn/images/old_employer_avatar/images/7acdca7dcdaceade47917640e20b5b42_1573701763_logorong_min1.w-240.h-240.png" alt="APV Logo" class="w-8 h-8 object-contain">
+                    <span class="font-extrabold text-slate-900 text-xs uppercase tracking-wider">I. Dự án trọng điểm</span>
+                </div>
+                <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Tối ưu hóa trải nghiệm bãi xe</span>
+            </div>
+
+            <!-- Content Area -->
+            <div class="my-auto grid grid-cols-12 gap-8 items-center">
+                <!-- Left content -->
+                <div class="col-span-7 space-y-4">
+                    <div class="space-y-1">
+                        <div class="inline-flex items-center gap-1.5 bg-emerald-50 border border-emerald-150 text-emerald-700 px-2.5 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wide">
+                            <i class="fa-solid fa-square-poll-horizontal"></i> Bệnh viện Quân y 175
+                        </div>
+                        <h2 class="text-2xl font-black text-slate-900">Vận Hành Tự Động &amp; Thẩm Mỹ Đột Phá</h2>
+                        <p class="text-slate-500 text-xs leading-relaxed">
+                            Cấu trúc hệ thống quy mô <strong class="text-slate-800">3 Trạm Ô tô</strong> cao cấp. Tập trung giải quyết toàn vẹn trải nghiệm của khách hàng và nâng cao doanh thu bãi đỗ xe.
+                        </p>
+                    </div>
+
+                    <!-- Tech bullet points -->
+                    <div class="space-y-2 text-xs">
+                        <div class="flex items-start gap-2 text-slate-600">
+                            <span class="w-4 h-4 bg-emerald-100 text-emerald-700 rounded flex items-center justify-center text-[10px] shrink-0 mt-0.5 font-bold">✓</span>
+                            <div>
+                                <span class="font-bold text-slate-800">Tích hợp ngân hàng mới:</span> Liên kết trực tiếp hệ thống ngân hàng <strong>MB Bank</strong>.
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-2 text-slate-600">
+                            <span class="w-4 h-4 bg-emerald-100 text-emerald-700 rounded flex items-center justify-center text-[10px] shrink-0 mt-0.5 font-bold">✓</span>
+                            <div>
+                                <span class="font-bold text-slate-800">Bảng LED HD_D16 thế hệ mới:</span> Hiển thị đa màu sắc, hỗ trợ chữ tiếng Việt đầy đủ sắc nét (thay thế đèn LED đỏ 1 màu đơn điệu cũ), mang lại trải nghiệm thị giác dễ chịu.
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-2 text-slate-600">
+                            <span class="w-4 h-4 bg-emerald-100 text-emerald-700 rounded flex items-center justify-center text-[10px] shrink-0 mt-0.5 font-bold">✓</span>
+                            <div>
+                                <span class="font-bold text-slate-800">Bảo toàn doanh thu bãi:</span> Tối ưu hóa tính năng ngăn chặn triệt để các hành vi vượt làn, nối đuôi xe ô tô để trốn vé.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual: Flow Diagram of Entry/Exit without ETC reader -->
+                <div class="col-span-5 bg-slate-50 border border-slate-200/80 rounded-2xl p-4 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[9px] text-emerald-700 font-extrabold uppercase tracking-widest block">Đột Phá Thuần Kỹ Thuật</span>
+                        <h4 class="font-bold text-slate-800 text-xs mt-0.5">Quy trình thông xe tự động không cần mã ETC (UHF)</h4>
+                    </div>
+
+                    <!-- Animated flowchart representation inside slides -->
+                    <div class="space-y-2 mt-3 text-[10px]">
+                        <!-- Step 1 -->
+                        <div class="bg-white border border-slate-150 p-2 rounded-lg flex items-center gap-2">
+                            <div class="w-5 h-5 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center font-bold">1</div>
+                            <span class="text-slate-600">Xe tới gần trạm (Mất mã UHF / Đứng xa đầu đọc)</span>
+                        </div>
+                        <!-- Arrow -->
+                        <div class="text-center text-slate-300 py-0.5"><i class="fa-solid fa-arrow-down-long"></i></div>
+                        <!-- Step 2 -->
+                        <div class="bg-white border border-slate-150 p-2 rounded-lg flex items-center gap-2">
+                            <div class="w-5 h-5 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center font-bold">2</div>
+                            <div>
+                                <span class="font-bold text-slate-800">Kích hoạt Fake Code:</span>
+                                <p class="text-[9px] text-slate-500">Giúp nhận diện &amp; cho phép xe đi vào tự động.</p>
+                            </div>
+                        </div>
+                        <!-- Arrow -->
+                        <div class="text-center text-slate-300 py-0.5"><i class="fa-solid fa-arrow-down-long"></i></div>
+                        <!-- Step 3 -->
+                        <div class="bg-white border border-slate-150 p-2 rounded-lg flex items-center gap-2">
+                            <div class="w-5 h-5 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center font-bold">3</div>
+                            <div>
+                                <span class="font-bold text-slate-800">Unknown Vehicle (Luồng ra):</span>
+                                <p class="text-[9px] text-slate-500">Tự so khớp biển số camera khi ko tìm thấy log đầu vào.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="flex justify-between items-center w-full border-t border-slate-100 pt-3 text-xs text-slate-400 font-medium">
+                <div>Đột phá trải nghiệm nhìn và giải quyết bài toán chống thất thoát doanh thu bãi đỗ</div>
+                <div>Trang 04/11</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: DỰ ÁN TRỌNG ĐIỂM - HEINEKEN & ỨNG DỤNG EGO -->
+        <div class="slide-frame" id="slide-5">
+            <!-- Header -->
+            <div class="flex justify-between items-center w-full border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-3">
+                    <img src="https://cdn1.vieclam24h.vn/images/old_employer_avatar/images/7acdca7dcdaceade47917640e20b5b42_1573701763_logorong_min1.w-240.h-240.png" alt="APV Logo" class="w-8 h-8 object-contain">
+                    <span class="font-extrabold text-slate-900 text-xs uppercase tracking-wider">I. Dự án trọng điểm</span>
+                </div>
+                <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Tiêu chuẩn quốc tế</span>
+            </div>
+
+            <!-- Content Area -->
+            <div class="my-auto grid grid-cols-12 gap-6 items-stretch">
+                <!-- Left: Heineken Details -->
+                <div class="col-span-6 bg-slate-50 border border-slate-200 p-4 rounded-2xl flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center text-xs shadow-sm"><i class="fa-solid fa-industry"></i></div>
+                            <div>
+                                <h3 class="font-black text-slate-900 text-sm">Chuỗi Siêu Nhà Máy Heineken</h3>
+                                <span class="bg-amber-100 text-amber-800 text-[8px] font-black px-1.5 py-0.5 rounded uppercase">5 Đại Nhà Máy Toàn Quốc</span>
+                            </div>
+                        </div>
+                        <p class="text-[11px] text-slate-500 leading-relaxed font-semibold">
+                            Giải pháp an ninh nội bộ cực kỳ nghiêm ngặt dành cho đối tác tập đoàn đa quốc gia.
+                        </p>
+                        
+                        <div class="space-y-2 pt-1 text-[11px] text-slate-600 font-medium">
+                            <div class="flex gap-2">
+                                <span class="text-amber-500 font-bold">•</span>
+                                <span><strong>Mở rộng Controller (Không giới hạn IP):</strong> Cho phép liên kết hàng loạt thiết bị ngoại vi cùng lúc (Barrier tốc độ, Trụ nhả/nuốt thẻ tự động).</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <span class="text-amber-500 font-bold">•</span>
+                                <span><strong>Đăng ký xe tháng thông minh:</strong> Đăng ký không cần gán cứng biển số (Vào: Thẻ + Biển số đang đi. Ra: Thẻ + Biển số lúc vào).</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <span class="text-amber-500 font-bold">•</span>
+                                <span><strong>Chính sách phân quyền (Rules) đa dạng:</strong> Phục vụ linh hoạt cho cả cán bộ nhân viên &amp; khách vãng lai ra vào nhà máy.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-500/10 border border-amber-500/20 p-2 rounded-xl text-center text-[9px] text-amber-800 font-extrabold uppercase">
+                        Gia tăng vượt bậc khả năng kiểm soát an ninh nội bộ chặt chẽ
+                    </div>
+                </div>
+
+                <!-- Right: Mobile App eGo 2026 -->
+                <div class="col-span-6 bg-slate-50 border border-slate-200 p-4 rounded-2xl flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-xs shadow-sm"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                            <div>
+                                <h3 class="font-black text-slate-900 text-sm">Ứng Dụng Di Động eGo</h3>
+                                <span class="bg-blue-100 text-blue-800 text-[8px] font-black px-1.5 py-0.5 rounded uppercase">Phiên Bản 2026</span>
+                            </div>
+                        </div>
+                        <p class="text-[11px] text-slate-500 leading-relaxed font-semibold">
+                            Được tái cấu trúc hoàn toàn trên nền tảng công nghệ di động tiên phong nhất năm 2026.
+                        </p>
+
+                        <!-- Highlight box -->
+                        <div class="bg-white border border-slate-150 p-2.5 rounded-xl space-y-2">
+                            <div class="flex items-center gap-2 text-[10px] font-bold text-slate-700">
+                                <i class="fa-solid fa-wallet text-blue-700 text-xs"></i>
+                                <span>Tích hợp chuyển khoản ngân hàng &amp; thanh toán trả trước</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-[10px] font-bold text-slate-700">
+                                <i class="fa-solid fa-id-badge text-blue-700 text-xs"></i>
+                                <span>Ra vào không dừng bằng mã thẻ định danh UHF</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-[10px] font-bold text-slate-700">
+                                <i class="fa-solid fa-circle-check text-emerald-600 text-xs"></i>
+                                <span>Hoạt động hoàn hảo trên thiết bị chuyên dụng H10 và C66</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-700 text-white p-2 rounded-xl text-center text-[10px] font-bold uppercase tracking-wide">
+                        Khả năng đáp ứng thời gian thực &amp; thanh toán thuận lợi
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="flex justify-between items-center w-full border-t border-slate-100 pt-3 text-xs text-slate-400 font-medium">
+                <div>Xây dựng hệ thống đạt chuẩn an ninh toàn cầu và chuyển dịch số thiết bị cầm tay</div>
+                <div>Trang 05/11</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: DANH SÁCH DỰ ÁN NỔI BẬT KHÁC (Bảng tổng hợp gọn) -->
+        <div class="slide-frame" id="slide-2-table">
+            <!-- Header -->
+            <div class="flex justify-between items-center w-full border-b border-slate-100 pb-2">
+                <div class="flex items-center gap-3">
+                    <img src="https://cdn1.vieclam24h.vn/images/old_employer_avatar/images/7acdca7dcdaceade47917640e20b5b42_1573701763_logorong_min1.w-240.h-240.png" alt="APV Logo" class="w-8 h-8 object-contain">
+                    <span class="font-extrabold text-slate-900 text-xs uppercase tracking-wider">II. Các dự án nổi bật khác</span>
+                </div>
+                <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Danh mục vận hành</span>
+            </div>
+
+            <!-- Content Area -->
+            <div class="my-auto space-y-2">
+                <div class="border border-slate-200 rounded-xl overflow-hidden shadow-sm bg-white">
+                    <table class="w-full text-left text-[10.5px]">
+                        <thead class="bg-slate-50 text-slate-700 uppercase font-bold text-[9px] border-b border-slate-200">
+                            <tr>
+                                <th class="p-2.5">Tên Dự Án</th>
+                                <th class="p-2.5">Đặc Trưng Công Nghệ Triển Khai</th>
+                                <th class="p-2.5 text-right">Hiệu Quả Thực Tế Đạt Được</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 font-medium text-slate-600">
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="p-2 font-bold text-slate-800">Nhà máy Hà Nam</td>
+                                <td class="p-2">Cán vòng từ xe máy tự nhận diện thông xe không cần thẻ.</td>
+                                <td class="p-2 text-right text-emerald-600 font-bold">Vận hành 4 tháng không lỗi</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="p-2 font-bold text-slate-800">Chung cư Richstar</td>
+                                <td class="p-2">Bật/tắt khóa phím xe ra vào, mở barrier cưỡng bức từ xa.</td>
+                                <td class="p-2 text-right text-blue-600 font-bold">Kiểm soát an toàn cao</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="p-2 font-bold text-slate-800">Chung cư Trung Kính</td>
+                                <td class="p-2">Tự động kiểm tra, đồng bộ lại hóa đơn khi mất mạng hoặc lỗi gửi.</td>
+                                <td class="p-2 text-right text-emerald-600 font-bold">Tuyệt đối không thất lạc bill</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="p-2 font-bold text-slate-800">Hai Pha (Trạm cân)</td>
+                                <td class="p-2">Camera Hik TCM403-BI độc lập, tự động đồng bộ &amp; in ấn phiếu cân, Zalo OA.</td>
+                                <td class="p-2 text-right text-blue-600 font-bold">Tự mở lại app khi tắt</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="p-2 font-bold text-slate-800">KDL Thạch Động</td>
+                                <td class="p-2">Hệ thống Tripod kiểm soát vé ra vào thông minh theo số lần quy định.</td>
+                                <td class="p-2 text-right text-emerald-600 font-bold">Kiểm soát vé chuẩn xác</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50">
+                                <td class="p-2 font-bold text-slate-800">Nhà máy Mabuchi</td>
+                                <td class="p-2">Tự động đồng bộ ca, thời gian di chuyển vào ra của từng xe.</td>
+                                <td class="p-2 text-right text-emerald-600 font-bold">Thời gian: 4s -> &lt;600ms</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/50 text-indigo-700 bg-indigo-50/10">
+                                <td class="p-2 font-bold">TTYT Lạc Thủy</td>
+                                <td class="p-2">Camera Hik TCM403-BI chạy độc lập hoàn toàn không vòng từ, thẻ hay reader.</td>
+                                <td class="p-2 text-right font-bold text-indigo-800">Tiết kiệm 100% chi phí thẻ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="flex justify-between items-center w-full border-t border-slate-100 pt-3 text-xs text-slate-400 font-medium">
+                <div>Tổng hợp 11 dự án vận hành phụ trợ ghi nhận hoạt động cực kỳ ổn định</div>
+                <div>Trang 06/11</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: CHỈ SỐ ẤN TƯỢNG - DOANH THU KHÔNG TIỀN MẶT BV NHI -->
+        <div class="slide-frame" id="slide-6">
+            <!-- Header -->
+            <div class="flex justify-between items-center w-full border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-3">
+                    <img src="https://cdn1.vieclam24h.vn/images/old_employer_avatar/images/7acdca7dcdaceade47917640e20b5b42_1573701763_logorong_min1.w-240.h-240.png" alt="APV Logo" class="w-8 h-8 object-contain">
+                    <span class="font-extrabold text-slate-900 text-xs uppercase tracking-wider">III. Chỉ số ấn tượng</span>
+                </div>
+                <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Hiệu Quả Doanh Thu Không Tiền Mặt</span>
+            </div>
+
+            <!-- Content Area -->
+            <div class="my-auto space-y-3">
+                <div class="space-y-0.5">
+                    <h2 class="text-2xl font-black text-slate-900">Bệnh Viện Nhi: Đột Phá Chuyển Đổi Không Tiền Mặt</h2>
+                    <p class="text-slate-500 text-xs">Phân tích chuyên sâu cơ cấu doanh thu làn Ô tô trong giai đoạn chạy thử nghiệm từ <strong class="text-slate-700">10/06 đến 30/06/2026</strong>.</p>
+                </div>
+
+                <div class="grid grid-cols-12 gap-6 items-center pt-1">
+                    <!-- Column 1: Clean Premium Doughnut Chart SVG representation -->
+                    <div class="col-span-5 bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col items-center justify-center relative">
+                        <div class="relative w-44 h-44 flex items-center justify-center">
+                            <!-- SVG Doughnut representing 80.2% vs 19.8% -->
+                            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#f1f5f9" stroke-width="14" />
+                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#10b981" stroke-width="14" 
+                                        stroke-dasharray="201.5 251.3" stroke-linecap="round" />
+                            </svg>
+                            <!-- Center info box -->
+                            <div class="absolute w-28 h-28 bg-white rounded-full flex flex-col items-center justify-center shadow-sm">
+                                <span class="text-3xl font-extrabold text-slate-900">80.2%</span>
+                                <span class="text-[9px] text-slate-400 font-black uppercase tracking-wider mt-1">Không Tiền Mặt</span>
+                            </div>
+                        </div>
+
+                        <!-- Legends -->
+                        <div class="flex justify-between w-full mt-3 text-[10px] font-bold text-slate-600 px-1">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-sm bg-emerald-500"></span>
+                                <span>Chuyển khoản / App (80.2%)</span>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-sm bg-slate-200"></span>
+                                <span>Tiền mặt (19.8%)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Insights and Metrics -->
+                    <div class="col-span-7 space-y-4">
+                        <div class="bg-emerald-50/30 border border-emerald-100 rounded-2xl p-4 space-y-3">
+                            <span class="text-[9px] text-emerald-800 font-black uppercase tracking-wider block">Báo cáo tài chính chi tiết</span>
+                            <div class="grid grid-cols-2 gap-4 divide-x divide-emerald-100">
+                                <div>
+                                    <p class="text-[10px] text-slate-400 font-bold uppercase">Doanh thu qua ví / QR</p>
+                                    <p class="text-2xl font-black text-emerald-600 mt-0.5">247,690,000đ</p>
+                                </div>
+                                <div class="pl-4">
+                                    <p class="text-[10px] text-slate-400 font-bold uppercase">Tổng Doanh thu bãi</p>
+                                    <p class="text-2xl font-black text-slate-800 mt-0.5">308,850,000đ</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wide">Giá Trị Doanh Nghiệp Thực Tế Mang Lại:</h4>
+                            <div class="grid grid-cols-2 gap-3 text-[10px] text-slate-600 font-medium">
+                                <div class="bg-slate-50 p-2.5 rounded-xl">
+                                    <span class="font-extrabold text-blue-700 block">Thời gian xử lý cổng</span>
+                                    Giảm từ 12-15 giây xuống <strong>&lt; 3 giây</strong>, giải phóng hoàn toàn tình trạng ùn tắc.
+                                </div>
+                                <div class="bg-slate-50 p-2.5 rounded-xl">
+                                    <span class="font-extrabold text-blue-700 block">Minh bạch dòng tiền</span>
+                                    Tự động hóa 100% dòng tiền vào tài khoản, triệt tiêu nguy cơ thất thoát thu ngân thủ công.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="flex justify-between items-center w-full border-t border-slate-100 pt-3 text-xs text-slate-400 font-medium">
+                <div>Chỉ số minh chứng sức mạnh chuyển dịch thanh toán không dùng tiền mặt tại các bệnh viện lớn</div>
+                <div>Trang 07/11</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8: CHỈ SỐ ẤN TƯỢNG - DOANH SỐ VÍ 6 THÁNG ĐẦU NĂM -->
+        <div class="slide-frame" id="slide-7">
+            <!-- Header -->
+            <div class="flex justify-between items-center w-full border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-3">
+                    <img src="https://cdn1.vieclam24h.vn/images/old_employer_avatar/images/7acdca7dcdaceade47917640e20b5b42_1573701763_logorong_min1.w-240.h-240.png" alt="APV Logo" class="w-8 h-8 object-contain">
+                    <span class="font-extrabold text-slate-900 text-xs uppercase tracking-wider">III. Chỉ số ấn tượng</span>
+                </div>
+                <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Xu hướng tăng trưởng tài chính</span>
+            </div>
+
+            <!-- Content Area -->
+            <div class="my-auto grid grid-cols-12 gap-6 items-stretch">
+                <!-- Left table of 6 month data -->
+                <div class="col-span-6 flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900 leading-tight">Thống Kê Doanh Số Ví Không Dừng</h2>
+                        <p class="text-[10px] text-slate-500 mt-1">Sự gia tăng liên tục qua các tháng cho thấy xu hướng dịch chuyển cực tốt từ tất cả các khách hàng.</p>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm mt-3">
+                        <table class="w-full text-left text-[10px]">
+                            <thead class="bg-slate-50 text-slate-700 uppercase font-bold text-[8px] border-b border-slate-200">
+                                <tr>
+                                    <th class="p-2">Tháng</th>
+                                    <th class="p-2">Doanh Thu (VND)</th>
+                                    <th class="p-2">Giao Dịch</th>
+                                    <th class="p-2">Tăng Trưởng</th>
+                                    <th class="p-2 text-right">Trạng Thái</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 font-semibold text-slate-600">
+                                <tr class="hover:bg-slate-50/50">
+                                    <td class="p-1.5 font-bold text-slate-800">Tháng 1</td>
+                                    <td class="p-1.5">575,896,500</td>
+                                    <td class="p-1.5">11,405</td>
+                                    <td class="p-1.5 text-slate-400 font-normal">Mốc nền</td>
+                                    <td class="p-1.5 text-right"><span class="bg-slate-100 text-slate-600 text-[8px] px-1.5 py-0.5 rounded">Mốc gốc</span></td>
+                                </tr>
+                                <tr class="hover:bg-slate-50/50 text-rose-600 bg-rose-50/5">
+                                    <td class="p-1.5 font-bold text-slate-800">Tháng 2</td>
+                                    <td class="p-1.5">474,866,000</td>
+                                    <td class="p-1.5">9,043</td>
+                                    <td class="p-1.5">-17.54%</td>
+                                    <td class="p-1.5 text-right"><span class="bg-rose-100 text-rose-700 text-[8px] px-1.5 py-0.5 rounded font-bold">Giảm (Tết)</span></td>
+                                </tr>
+                                <tr class="hover:bg-slate-50/50 text-emerald-600 bg-emerald-50/5">
+                                    <td class="p-1.5 font-bold text-slate-800">Tháng 3</td>
+                                    <td class="p-1.5">710,643,000</td>
+                                    <td class="p-1.5">13,263</td>
+                                    <td class="p-1.5">+49.65%</td>
+                                    <td class="p-1.5 text-right"><span class="bg-emerald-100 text-emerald-800 text-[8px] px-1.5 py-0.5 rounded font-bold">Tăng mạnh</span></td>
+                                </tr>
+                                <tr class="hover:bg-slate-50/50 text-emerald-600 bg-emerald-50/5">
+                                    <td class="p-1.5 font-bold text-slate-800">Tháng 4</td>
+                                    <td class="p-1.5">1,046,997,500</td>
+                                    <td class="p-1.5">21,779</td>
+                                    <td class="p-1.5">+47.33%</td>
+                                    <td class="p-1.5 text-right"><span class="bg-emerald-100 text-emerald-800 text-[8px] px-1.5 py-0.5 rounded font-bold">Tăng tốt</span></td>
+                                </tr>
+                                <tr class="hover:bg-slate-50/50 text-emerald-600 bg-emerald-50/5">
+                                    <td class="p-1.5 font-bold text-slate-800">Tháng 5</td>
+                                    <td class="p-1.5">1,469,059,000</td>
+                                    <td class="p-1.5">31,185</td>
+                                    <td class="p-1.5">+40.31%</td>
+                                    <td class="p-1.5 text-right"><span class="bg-emerald-100 text-emerald-800 text-[8px] px-1.5 py-0.5 rounded font-bold">Tăng ổn định</span></td>
+                                </tr>
+                                <tr class="hover:bg-slate-50/50 text-blue-700 bg-blue-50/10">
+                                    <td class="p-1.5 font-bold text-blue-900">Tháng 6</td>
+                                    <td class="p-1.5 font-extrabold">1,953,716,000</td>
+                                    <td class="p-1.5">40,565</td>
+                                    <td class="p-1.5">+32.99%</td>
+                                    <td class="p-1.5 text-right"><span class="bg-blue-700 text-white text-[8px] px-1.5 py-0.5 rounded font-bold">Đạt đỉnh</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Right: SVG Area Curve Line representing Revenue Trend -->
+                <div class="col-span-6 bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[9px] text-blue-700 font-extrabold uppercase tracking-widest block">Trực Quan Doanh Số 6 Tháng</span>
+                        <h3 class="font-bold text-slate-800 text-xs mt-0.5">Biểu đồ đường xu hướng tăng trưởng tổng doanh thu</h3>
+                    </div>
+
+                    <!-- Line Chart SVG wrapper -->
+                    <div class="w-full h-52">
+                        <svg class="w-full h-full" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="blueGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#1d4ed8" stop-opacity="0.25"/>
+                                    <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.0"/>
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- Grid Lines -->
+                            <line x1="30" y1="20" x2="470" y2="20" stroke="#f1f5f9" stroke-width="1"/>
+                            <line x1="30" y1="65" x2="470" y2="65" stroke="#f1f5f9" stroke-width="1"/>
+                            <line x1="30" y1="110" x2="470" y2="110" stroke="#f1f5f9" stroke-width="1"/>
+                            <line x1="30" y1="155" x2="470" y2="155" stroke="#e2e8f0" stroke-width="1.5"/>
+
+                            <!-- Area Curve Path -->
+                            <!-- Coordinates: M1(40, 125) T2(120, 138) T3(200, 110) T4(280, 80) T5(360, 50) T6(440, 20) -->
+                            <path d="M 40 155 L 40 125 L 120 138 L 200 110 L 280 80 L 360 50 L 440 20 L 440 155 Z" fill="url(#blueGrad)"/>
+
+                            <!-- Line Path -->
+                            <path d="M 40 125 L 120 138 L 200 110 L 280 80 L 360 50 L 440 20" fill="none" stroke="#1d4ed8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+                            <!-- Graph Nodes -->
+                            <circle cx="40" cy="125" r="4" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+                            <circle cx="120" cy="138" r="4" fill="#ffffff" stroke="#ef4444" stroke-width="2"/>
+                            <circle cx="200" cy="110" r="4" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+                            <circle cx="280" cy="80" r="4" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+                            <circle cx="360" cy="50" r="4" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+                            <circle cx="440" cy="20" r="5.5" fill="#ffffff" stroke="#10b981" stroke-width="3"/>
+
+                            <!-- Node Text Labels -->
+                            <text x="40" y="112" font-family="sans-serif" font-size="8" fill="#475569" text-anchor="middle" font-weight="bold">575M</text>
+                            <text x="120" y="152" font-family="sans-serif" font-size="8" fill="#ef4444" text-anchor="middle" font-weight="bold">474M</text>
+                            <text x="200" y="97" font-family="sans-serif" font-size="8" fill="#475569" text-anchor="middle" font-weight="bold">710M</text>
+                            <text x="280" y="67" font-family="sans-serif" font-size="8" fill="#475569" text-anchor="middle" font-weight="bold">1.04B</text>
+                            <text x="360" y="37" font-family="sans-serif" font-size="8" fill="#475569" text-anchor="middle" font-weight="bold">1.46B</text>
+                            <text x="440" y="10" font-family="sans-serif" font-size="8" fill="#10b981" text-anchor="middle" font-weight="bold">1.95B</text>
+
+                            <!-- Months labels -->
+                            <text x="40" y="172" font-family="sans-serif" font-size="8.5" fill="#64748b" text-anchor="middle" font-weight="semibold">Tháng 1</text>
+                            <text x="120" y="172" font-family="sans-serif" font-size="8.5" fill="#64748b" text-anchor="middle" font-weight="semibold">Tháng 2</text>
+                            <text x="200" y="172" font-family="sans-serif" font-size="8.5" fill="#64748b" text-anchor="middle" font-weight="semibold">Tháng 3</text>
+                            <text x="280" y="172" font-family="sans-serif" font-size="8.5" fill="#64748b" text-anchor="middle" font-weight="semibold">Tháng 4</text>
+                            <text x="360" y="172" font-family="sans-serif" font-size="8.5" fill="#64748b" text-anchor="middle" font-weight="semibold">Tháng 5</text>
+                            <text x="440" y="172" font-family="sans-serif" font-size="8.5" fill="#10b981" text-anchor="middle" font-weight="bold">Tháng 6</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="flex justify-between items-center w-full border-t border-slate-100 pt-3 text-xs text-slate-400 font-medium">
+                <div>Tổng hợp doanh thu ví không dừng ghi nhận xu hướng tăng bứt phá từ sau Tết</div>
+                <div>Trang 08/11</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9: CÔNG CỤ NỘI BỘ WEBSITES - QUẢN LÝ TẬP TRUNG -->
+        <div class="slide-frame" id="slide-8">
+            <!-- Header -->
+            <div class="flex justify-between items-center w-full border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-3">
+                    <img src="https://cdn1.vieclam24h.vn/images/old_employer_avatar/images/7acdca7dcdaceade47917640e20b5b42_1573701763_logorong_min1.w-240.h-240.png" alt="APV Logo" class="w-8 h-8 object-contain">
+                    <span class="font-extrabold text-slate-900 text-xs uppercase tracking-wider">IV. Công cụ quản lý nội bộ</span>
+                </div>
+                <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Nâng cao hiệu suất quản trị</span>
+            </div>
+
+            <!-- Content Area -->
+            <div class="my-auto space-y-4">
+                <div class="space-y-0.5">
+                    <h2 class="text-2xl font-black text-slate-900">Số Hóa Toàn Diện Công Cụ Hỗ Trợ Nội Bộ</h2>
+                    <p class="text-slate-500 text-xs">Mô hình hóa 4 giải pháp nền tảng Web mang lại giá trị quản trị vượt bậc cho đội ngũ Kỹ sư &amp; Quản lý.</p>
+                </div>
+
+                <!-- 4 Web Cards Mockups layout -->
+                <div class="grid grid-cols-4 gap-4 pt-1 text-[10px]">
+                    <!-- Card 1 -->
+                    <div class="border border-slate-200/80 rounded-2xl p-3.5 bg-slate-50/50 flex flex-col justify-between">
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between items-center">
+                                <span class="w-7 h-7 rounded bg-blue-100 text-blue-700 flex items-center justify-center"><i class="fa-solid fa-key"></i></span>
+                                <span class="bg-blue-100 text-blue-800 text-[8px] font-black px-1.5 py-0.5 rounded">LICENSE</span>
+                            </div>
+                            <h4 class="font-bold text-slate-800 text-xs">Quản lý License Web</h4>
+                            <p class="text-slate-500 leading-normal">Tạo Key bản quyền tự động, cực nhanh &amp; đơn giản.</p>
+                        </div>
+                        <div class="mt-3 pt-2.5 border-t border-slate-200">
+                            <p class="text-[8px] text-slate-400 uppercase tracking-wide">Thời gian cấp phát:</p>
+                            <p class="font-bold text-slate-800 mt-0.5"><span class="line-through text-rose-500 mr-1.5">15 Phút</span> <i class="fa-solid fa-arrow-right text-slate-400"></i> <strong class="text-emerald-600 text-sm ml-1">5 Giây</strong></p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="border border-slate-200/80 rounded-2xl p-3.5 bg-slate-50/50 flex flex-col justify-between">
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between items-center">
+                                <span class="w-7 h-7 rounded bg-rose-100 text-rose-700 flex items-center justify-center"><i class="fa-solid fa-bug"></i></span>
+                                <span class="bg-rose-100 text-rose-800 text-[8px] font-black px-1.5 py-0.5 rounded">MONITOR</span>
+                            </div>
+                            <h4 class="font-bold text-slate-800 text-xs">Website Quản Lý Log/Bug</h4>
+                            <p class="text-slate-500 leading-normal">Tự phát hiện &amp; cảnh báo sớm sự cố chi nhánh dự án.</p>
+                        </div>
+                        <div class="mt-3 pt-2.5 border-t border-slate-200">
+                            <p class="text-[8px] text-slate-400 uppercase tracking-wide">Lợi ích thực tế:</p>
+                            <p class="font-bold text-rose-700 mt-0.5">Giảm thiểu tối đa thiệt hại cho khách hàng</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="border border-slate-200/80 rounded-2xl p-3.5 bg-slate-50/50 flex flex-col justify-between">
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between items-center">
+                                <span class="w-7 h-7 rounded bg-emerald-100 text-emerald-700 flex items-center justify-center"><i class="fa-solid fa-file-invoice"></i></span>
+                                <span class="bg-emerald-100 text-emerald-800 text-[8px] font-black px-1.5 py-0.5 rounded">INVOICE</span>
+                            </div>
+                            <h4 class="font-bold text-slate-800 text-xs">Web Quản Lý Hóa Đơn</h4>
+                            <p class="text-slate-500 leading-normal">Hợp nhất, quản lý và đối soát toàn bộ hóa đơn khách hàng.</p>
+                        </div>
+                        <div class="mt-3 pt-2.5 border-t border-slate-200">
+                            <p class="text-[8px] text-slate-400 uppercase tracking-wide">Tiết kiệm thời gian:</p>
+                            <p class="font-bold text-emerald-600 mt-0.5 text-sm">Tiết kiệm 90%</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="border border-slate-200/80 rounded-2xl p-3.5 bg-slate-50/50 flex flex-col justify-between">
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between items-center">
+                                <span class="w-7 h-7 rounded bg-indigo-100 text-indigo-700 flex items-center justify-center"><i class="fa-solid fa-file-contract"></i></span>
+                                <span class="bg-indigo-100 text-indigo-800 text-[8px] font-black px-1.5 py-0.5 rounded">REPORTS</span>
+                            </div>
+                            <h4 class="font-bold text-slate-800 text-xs">Weekly Report Leader</h4>
+                            <p class="text-slate-500 leading-normal">Báo cáo tập trung All-in-one tiến độ thi công, support.</p>
+                        </div>
+                        <div class="mt-3 pt-2.5 border-t border-slate-200">
+                            <p class="text-[8px] text-slate-400 uppercase tracking-wide">Lợi ích quản lý:</p>
+                            <p class="font-bold text-indigo-800 mt-0.5">Hỗ trợ Ban lãnh đạo ra quyết định nhanh chóng</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="flex justify-between items-center w-full border-t border-slate-100 pt-3 text-xs text-slate-400 font-medium">
+                <div>Nhóm công cụ nội bộ mở ra một tiêu chuẩn quản trị tự động hóa hoàn hảo</div>
+                <div>Trang 09/11</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: NGHIÊN CỨU R&D ĐỘT PHÁ - PROTECT APP & CAMERA LPR -->
+        <div class="slide-frame" id="slide-9">
+            <!-- Header -->
+            <div class="flex justify-between items-center w-full border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-3">
+                    <img src="https://cdn1.vieclam24h.vn/images/old_employer_avatar/images/7acdca7dcdaceade47917640e20b5b42_1573701763_logorong_min1.w-240.h-240.png" alt="APV Logo" class="w-8 h-8 object-contain">
+                    <span class="font-extrabold text-slate-900 text-xs uppercase tracking-wider">V. Nghiên cứu &amp; Đột phá R&amp;D</span>
+                </div>
+                <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Tiên phong công nghệ</span>
+            </div>
+
+            <!-- Content Area -->
+            <div class="my-auto grid grid-cols-12 gap-6 items-stretch">
+                <!-- Left: Protect App eParking -->
+                <div class="col-span-6 bg-slate-50 border border-slate-200 p-4 rounded-2xl flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-lg bg-rose-100 text-rose-700 flex items-center justify-center text-sm shadow-sm"><i class="fa-solid fa-shield-halved"></i></div>
+                            <div>
+                                <h3 class="font-black text-slate-900 text-sm">Phần Mềm Protect App eParking</h3>
+                                <span class="bg-rose-100 text-rose-800 text-[8px] font-black px-1.5 py-0.5 rounded uppercase">Bọc bảo mật mã nguồn tự động</span>
+                            </div>
+                        </div>
+                        <p class="text-[11px] text-slate-500 leading-relaxed font-semibold">
+                            Giải pháp bọc bảo vệ app hoàn toàn tự động, gạt bỏ sự phụ thuộc vào kỹ sư cấp cao lúc đang đi công trình xa.
+                        </p>
+
+                        <!-- Time comparison flow -->
+                        <div class="grid grid-cols-2 gap-3 pt-1 text-center">
+                            <div class="bg-white border border-slate-150 p-2 rounded-xl">
+                                <p class="text-[8px] font-bold text-slate-400 uppercase">Tiết kiệm thời gian</p>
+                                <p class="text-xl font-black text-emerald-600 mt-0.5">~93.33%</p>
+                                <p class="text-[9px] text-slate-500">Từ 30 phút xuống 5 giây</p>
+                            </div>
+                            <div class="bg-white border border-slate-150 p-2 rounded-xl">
+                                <p class="text-[8px] font-bold text-slate-400 uppercase">Năng suất đóng gói</p>
+                                <p class="text-xl font-black text-blue-700 mt-0.5">+1400%</p>
+                                <p class="text-[9px] text-slate-500">Gấp 15 lần thông thường</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-rose-50 border border-rose-100 p-2 rounded-xl text-center text-[10px] font-bold text-rose-950">
+                        <i class="fa-solid fa-earth-americas"></i> Giúp đội ngũ Support đóng gói App mọi lúc mọi nơi
+                    </div>
+                </div>
+
+                <!-- Right: Cutting-edge R&D items -->
+                <div class="col-span-6 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <h3 class="font-extrabold text-slate-800 text-xs uppercase tracking-wider flex items-center gap-1.5">
+                            <i class="fa-solid fa-flask text-emerald-500"></i> Công nghệ R&amp;D đón đầu xu hướng
+                        </h3>
+
+                        <!-- Tech item 1 -->
+                        <div class="flex gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-blue-50 border border-blue-150 text-blue-700 flex items-center justify-center shrink-0 shadow-sm"><i class="fa-solid fa-camera"></i></div>
+                            <div>
+                                <h4 class="font-extrabold text-slate-800 text-xs">Tích hợp Camera LPR HikVision TCM403-BI</h4>
+                                <p class="text-[10px] text-slate-500 leading-normal mt-0.5">
+                                    Tự động nhận diện biển số trực tiếp trên chip Camera (Edge AI) giúp giảm tải công việc cho server. Cho phép thông xe không cần thẻ từ hay đầu đọc UHF. (Vận hành xuất sắc tại <strong>Lạc Thủy</strong> &amp; <strong>Hai Pha</strong>).
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Tech item 2 -->
+                        <div class="flex gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-150 text-emerald-700 flex items-center justify-center shrink-0 shadow-sm"><i class="fa-solid fa-fingerprint"></i></div>
+                            <div>
+                                <h4 class="font-extrabold text-slate-800 text-xs">Đầu đọc nhận diện tĩnh mạch mạch máu gân tay</h4>
+                                <p class="text-[10px] text-slate-500 leading-normal mt-0.5">
+                                    Sơ đồ hóa mạch máu/gân tay không cần tiếp xúc, thay thế hoàn toàn vai trò của thẻ từ vật lý truyền thống với mức độ an toàn sinh trắc học tuyệt đối.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="flex justify-between items-center w-full border-t border-slate-100 pt-3 text-xs text-slate-400 font-medium">
+                <div>An Phú Việt R&amp;D - Phát kiến đổi mới công nghệ nâng bước tương lai</div>
+                <div>Trang 10/11</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: KẾ HOẠCH PHÁT TRIỂN 6 THÁNG CUỐI NĂM -->
+        <div class="slide-frame" id="slide-10">
+            <!-- Header -->
+            <div class="flex justify-between items-center w-full border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-3">
+                    <img src="https://cdn1.vieclam24h.vn/images/old_employer_avatar/images/7acdca7dcdaceade47917640e20b5b42_1573701763_logorong_min1.w-240.h-240.png" alt="APV Logo" class="w-8 h-8 object-contain">
+                    <span class="font-extrabold text-slate-900 text-xs uppercase tracking-wider">VI. Kế hoạch phát triển 6 tháng cuối năm</span>
+                </div>
+                <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Chiến lược hành động</span>
+            </div>
+
+            <!-- Content Area -->
+            <div class="my-auto space-y-5">
+                <div class="text-center max-w-xl mx-auto space-y-1">
+                    <h2 class="text-2xl font-black text-slate-900">Mục Tiêu Phát Triển 6 Tháng Cuối Năm</h2>
+                    <p class="text-slate-500 text-xs">Tập trung nguồn lực IT nghiên cứu hoàn thiện 3 mũi nhọn công nghệ cốt lõi giúp gia tăng tính cạnh tranh thương mại.</p>
+                </div>
+
+                <div class="grid grid-cols-3 gap-5 pt-1 text-[11px]">
+                    <!-- Roadmap 1 -->
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl space-y-2 flex flex-col justify-between hover:border-blue-400 transition-all">
+                        <div class="space-y-1">
+                            <span class="bg-blue-100 text-blue-800 text-[8px] font-black px-1.5 py-0.5 rounded uppercase">Mũi nhọn 1</span>
+                            <h4 class="font-bold text-slate-800 text-xs">eParking cơ bản trên Linux</h4>
+                        </div>
+                        <p class="text-slate-500 leading-relaxed text-[10.5px]">
+                            Phát triển phiên bản eParking chạy mượt mà trực tiếp trên Linux nhằm triệt tiêu hoàn toàn chi phí bản quyền Windows, tối ưu giá thành sản phẩm bán ra.
+                        </p>
+                    </div>
+
+                    <!-- Roadmap 2 -->
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl space-y-2 flex flex-col justify-between hover:border-emerald-400 transition-all">
+                        <div class="space-y-1">
+                            <span class="bg-emerald-100 text-emerald-800 text-[8px] font-black px-1.5 py-0.5 rounded uppercase">Mũi nhọn 2</span>
+                            <h4 class="font-bold text-slate-800 text-xs">Tiếp tục tối ưu hóa CRM</h4>
+                        </div>
+                        <p class="text-slate-500 leading-relaxed text-[10.5px]">
+                            Đưa toàn bộ quy trình chăm sóc, bảo trì hỗ trợ kỹ thuật khách hàng lên CRM nội bộ giúp nâng tầm năng suất, giảm tải thời gian phản hồi sự cố.
+                        </p>
+                    </div>
+
+                    <!-- Roadmap 3 -->
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl space-y-2 flex flex-col justify-between hover:border-indigo-400 transition-all">
+                        <div class="space-y-1">
+                            <span class="bg-indigo-100 text-indigo-800 text-[8px] font-black px-1.5 py-0.5 rounded uppercase">Mũi nhọn 3</span>
+                            <h4 class="font-bold text-slate-800 text-xs">eParking Factory - FaceID v2</h4>
+                        </div>
+                        <p class="text-slate-500 leading-relaxed text-[10.5px]">
+                            Hoàn thiện phiên bản bãi đỗ đặc chủng cho khối nhà máy công nghiệp lớn, thông xe tự động thông qua nhận diện khuôn mặt FaceID không tiếp xúc.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="flex justify-between items-center w-full border-t border-slate-100 pt-3 text-xs text-slate-400 font-medium">
+                <div>Đội ngũ IT An Phú Việt hướng tới mục tiêu hoàn thiện sản phẩm &amp; tối ưu hóa chi phí doanh nghiệp</div>
+                <div>Trang 11/11</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12: LỜI CẢM ƠN (Closing Slide) -->
+        <div class="slide-frame" id="slide-11">
+            <!-- Header -->
+            <div class="flex justify-between items-center w-full border-b border-slate-100 pb-3">
+                <div class="flex items-center gap-3">
+                    <img src="https://cdn1.vieclam24h.vn/images/old_employer_avatar/images/7acdca7dcdaceade47917640e20b5b42_1573701763_logorong_min1.w-240.h-240.png" alt="APV Logo" class="w-8 h-8 object-contain">
+                    <div class="leading-none">
+                        <span class="font-extrabold text-slate-900 tracking-wider text-xs uppercase block">AN PHÚ VIỆT</span>
+                        <span class="text-[9px] text-blue-700 font-bold uppercase tracking-widest block">ePARKING</span>
+                    </div>
+                </div>
+                <span class="text-xs text-slate-400 font-bold uppercase tracking-widest">Hoàn thành báo cáo</span>
+            </div>
+
+            <!-- Content Area -->
+            <div class="my-auto text-center space-y-6">
+                <div class="space-y-3">
+                    <span class="text-blue-700 font-black tracking-widest text-xs uppercase block">KẾT THÚC BUỔI TRÌNH BÀY</span>
+                    <h1 class="text-4xl font-black text-slate-900 tracking-tight leading-none">
+                        Xin Chân Thành Cảm Ơn!
+                    </h1>
+                    <p class="text-slate-500 text-sm max-w-md mx-auto leading-relaxed font-semibold">
+                        Sự ủng hộ sát sao của Ban Giám đốc và các đơn vị phòng ban liên quan chính là bệ phóng cho các thành quả công nghệ vượt bậc của đội ngũ IT.
+                    </p>
+                </div>
+
+                <!-- Open Q&A Session Mock -->
+                <div class="inline-flex items-center gap-3.5 bg-slate-50 border border-slate-200 rounded-2xl px-6 py-3.5 shadow-sm mx-auto text-left max-w-sm">
+                    <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg shrink-0 animate-bounce">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-slate-800">Q&amp;A - Thảo luận mở</p>
+                        <p class="text-[9.5px] text-slate-500 leading-normal">Mọi ý kiến đóng góp của Anh/Chị sẽ giúp nâng tầm dịch vụ eParking của chúng ta.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="flex justify-between items-center w-full border-t border-slate-100 pt-3 text-xs text-slate-400 font-medium">
+                <div>An Phú Việt Group - Đồng hành cùng chuyển đổi số bãi xe thông minh tại Việt Nam</div>
+                <div>An Phú Việt eParking</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Slide Control & Navigation Bar -->
+    <div class="mb-4 flex justify-center items-center gap-4 w-full px-4">
+        <div class="bg-white/95 backdrop-blur px-6 py-3 rounded-2xl border border-slate-200/80 shadow-md flex items-center gap-6 text-slate-700 text-sm font-semibold max-w-xl w-full justify-between">
+            <!-- Left Prev button -->
+            <button id="prev-btn" class="hover:text-blue-700 transition-colors flex items-center justify-center w-8 h-8 rounded-full hover:bg-slate-100">
+                <i class="fa-solid fa-chevron-left text-base"></i>
+            </button>
+            
+            <!-- Dynamic Dots Pagination container -->
+            <div class="flex items-center gap-1.5" id="bullets-container">
+                <!-- Dots are generated here dynamically via javascript -->
+            </div>
+
+            <!-- Right Next button -->
+            <button id="next-btn" class="hover:text-blue-700 transition-colors flex items-center justify-center w-8 h-8 rounded-full hover:bg-slate-100">
+                <i class="fa-solid fa-chevron-right text-base"></i>
+            </button>
+
+            <!-- Slide Count label info -->
+            <div class="border-l border-slate-200 pl-4 text-xs font-mono text-slate-400 flex items-center gap-1 shrink-0">
+                <span>Slide:</span>
+                <span id="current-slide-num" class="font-bold text-slate-900">1</span>
+                <span>/</span>
+                <span id="total-slides-num" class="text-slate-500">12</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT CONTROLLER FOR SLIDES PRESENTATION -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const slides = document.querySelectorAll(".slide-frame");
+            const prevBtn = document.getElementById("prev-btn");
+            const nextBtn = document.getElementById("next-btn");
+            const currentSlideNum = document.getElementById("current-slide-num");
+            const totalSlidesNum = document.getElementById("total-slides-num");
+            const bulletsContainer = document.getElementById("bullets-container");
+            
+            let activeIndex = 0;
+            const totalSlides = slides.length;
+            totalSlidesNum.textContent = totalSlides;
+
+            // Generate Nav Dots dynamically based on actual slides count
+            slides.forEach((_, idx) => {
+                const bullet = document.createElement("button");
+                bullet.className = `bullet ${idx === 0 ? 'active' : ''}`;
+                bullet.dataset.targetIndex = idx;
+                bullet.addEventListener("click", () => {
+                    goToSlide(idx);
+                });
+                bulletsContainer.appendChild(bullet);
+            });
+
+            const bullets = bulletsContainer.querySelectorAll(".bullet");
+
+            // Function to change active slide
+            function goToSlide(index) {
+                if (index >= 0 && index < totalSlides) {
+                    activeIndex = index;
+                    
+                    // Toggle Active Slide
+                    slides.forEach((slide, idx) => {
+                        if (idx === activeIndex) {
+                            slide.classList.add("active");
+                        } else {
+                            slide.classList.remove("active");
+                        }
+                    });
+
+                    // Update Active Dot class list
+                    bullets.forEach((bullet, idx) => {
+                        if (idx === activeIndex) {
+                            bullet.classList.add("active");
+                        } else {
+                            bullet.classList.remove("active");
+                        }
+                    });
+
+                    // Update Count Display indicator
+                    currentSlideNum.textContent = activeIndex + 1;
+                }
+            }
+
+            // Button Click event handlers
+            prevBtn.addEventListener("click", () => {
+                if (activeIndex > 0) {
+                    goToSlide(activeIndex - 1);
+                }
+            });
+
+            nextBtn.addEventListener("click", () => {
+                if (activeIndex < totalSlides - 1) {
+                    goToSlide(activeIndex + 1);
+                }
+            });
+
+            // Keyboard Arrow Key Support
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "ArrowRight" || e.key === " ") {
+                    e.preventDefault();
+                    if (activeIndex < totalSlides - 1) {
+                        goToSlide(activeIndex + 1);
+                    }
+                } else if (e.key === "ArrowLeft") {
+                    e.preventDefault();
+                    if (activeIndex > 0) {
+                        goToSlide(activeIndex - 1);
+                    }
+                }
+            });
+
+            // Touch Swipe Support for Tablets/Mobiles
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            const deckWrapper = document.getElementById("deck-wrapper");
+
+            deckWrapper.addEventListener("touchstart", (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            deckWrapper.addEventListener("touchend", (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipeGesture();
+            }, { passive: true });
+
+            function handleSwipeGesture() {
+                const threshold = 50; // swipe minimum distance
+                if (touchEndX < touchStartX - threshold) { // Swiped Left -> Next
+                    if (activeIndex < totalSlides - 1) {
+                        goToSlide(activeIndex + 1);
+                    }
+                }
+                if (touchEndX > touchStartX + threshold) { // Swiped Right -> Prev
+                    if (activeIndex > 0) {
+                        goToSlide(activeIndex - 1);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
