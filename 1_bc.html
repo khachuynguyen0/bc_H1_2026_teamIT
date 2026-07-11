@@ -842,70 +842,79 @@
                 </div>
 
                 <div class="grid grid-cols-12 gap-6 items-center pt-1">
-                    <!-- Column 1: Clean Premium Doughnut Chart SVG representation -->
-                    <div
-                        class="col-span-5 bg-slate-50 border border-slate-200 rounded-2xl p-4 flex flex-col items-center justify-center relative">
-                        <div class="relative w-44 h-44 flex items-center justify-center">
-                            <!-- SVG Doughnut representing 80.2% vs 19.8% -->
-                            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#f1f5f9" stroke-width="14" />
-                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#10b981" stroke-width="14"
-                                    stroke-dasharray="201.5 251.3" stroke-linecap="round" />
-                            </svg>
-                            <!-- Center info box -->
-                            <div
-                                class="absolute w-28 h-28 bg-white rounded-full flex flex-col items-center justify-center shadow-sm">
-                                <span class="text-3xl font-extrabold text-slate-900">80.2%</span>
-                                <span class="text-[9px] text-slate-400 font-black uppercase tracking-wider mt-1">Không
-                                    Tiền Mặt</span>
+                    <!-- Left Content: Chart and Metrics -->
+                    <div class="col-span-8 space-y-4">
+                        <div class="flex gap-4 items-stretch">
+                            <!-- Doughnut Chart Card -->
+                            <div class="w-[45%] bg-slate-50 border border-slate-200 rounded-2xl p-3 flex flex-col items-center justify-center relative shadow-sm">
+                                <div class="relative w-32 h-32 flex items-center justify-center">
+                                    <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#f1f5f9" stroke-width="14" />
+                                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#10b981" stroke-width="14"
+                                            stroke-dasharray="201.5 251.3" stroke-linecap="round" />
+                                    </svg>
+                                    <div class="absolute w-20 h-20 bg-white rounded-full flex flex-col items-center justify-center shadow-sm">
+                                        <span class="text-xl font-extrabold text-slate-900 leading-none">80.2%</span>
+                                        <span class="text-[7.5px] text-slate-400 font-black uppercase tracking-wider mt-0.5">Không TM</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-between w-full mt-2.5 text-[8.5px] font-bold text-slate-600 px-1">
+                                    <div class="flex items-center gap-1">
+                                        <span class="w-2 h-2 rounded-sm bg-emerald-500 shrink-0"></span>
+                                        <span class="truncate">Không TM (80.2%)</span>
+                                    </div>
+                                    <div class="flex items-center gap-1">
+                                        <span class="w-2 h-2 rounded-sm bg-slate-200 shrink-0"></span>
+                                        <span class="truncate">Tiền mặt (19.8%)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Financial Details Card -->
+                            <div class="w-[55%] bg-emerald-50/30 border border-emerald-100 rounded-2xl p-4 flex flex-col justify-center space-y-3 shadow-sm">
+                                <span class="text-[9px] text-emerald-800 font-black uppercase tracking-wider block">Báo cáo tài chính chi tiết</span>
+                                <div class="space-y-2">
+                                    <div>
+                                        <p class="text-[9.5px] text-slate-400 font-bold uppercase leading-none">Doanh thu ePass / VETC / QR</p>
+                                        <p class="text-xl font-black text-emerald-600 mt-1">247,690,000đ</p>
+                                    </div>
+                                    <div class="border-t border-emerald-100/60 pt-2">
+                                        <p class="text-[9.5px] text-slate-400 font-bold uppercase leading-none">Tổng Doanh thu bãi</p>
+                                        <p class="text-xl font-black text-slate-800 mt-1">308,850,000đ</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Legends -->
-                        <div class="flex justify-between w-full mt-3 text-[10px] font-bold text-slate-600 px-1">
-                            <div class="flex items-center gap-1.5">
-                                <span class="w-2.5 h-2.5 rounded-sm bg-emerald-500"></span>
-                                <span>Chuyển khoản / App (80.2%)</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <span class="w-2.5 h-2.5 rounded-sm bg-slate-200"></span>
-                                <span>Tiền mặt (19.8%)</span>
+                        <!-- Business Values Row -->
+                        <div class="space-y-2">
+                            <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wide">Giá Trị Doanh Nghiệp Thực Tế Mang Lại:</h4>
+                            <div class="grid grid-cols-2 gap-3 text-[10px] text-slate-600 font-medium">
+                                <div class="bg-slate-50 p-2.5 rounded-xl">
+                                    <span class="font-extrabold text-blue-700 block">Thời gian xử lý cổng</span>
+                                    Giảm từ 12-15 giây xuống <strong>&lt; 3 giây</strong>, giải phóng hoàn toàn tình trạng ùn tắc.
+                                </div>
+                                <div class="bg-slate-50 p-2.5 rounded-xl">
+                                    <span class="font-extrabold text-blue-700 block">Minh bạch dòng tiền</span>
+                                    Tự động hóa 100% dòng tiền vào tài khoản, triệt tiêu nguy cơ thất thoát thu ngân thủ công.
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Column 2: Insights and Metrics -->
-                    <div class="col-span-7 space-y-4">
-                        <div class="bg-emerald-50/30 border border-emerald-100 rounded-2xl p-4 space-y-3">
-                            <span class="text-[9px] text-emerald-800 font-black uppercase tracking-wider block">Báo cáo
-                                tài chính chi tiết</span>
-                            <div class="grid grid-cols-2 gap-4 divide-x divide-emerald-100">
-                                <div>
-                                    <p class="text-[10px] text-slate-400 font-bold uppercase">Doanh thu qua ví / QR</p>
-                                    <p class="text-2xl font-black text-emerald-600 mt-0.5">247,690,000đ</p>
-                                </div>
-                                <div class="pl-4">
-                                    <p class="text-[10px] text-slate-400 font-bold uppercase">Tổng Doanh thu bãi</p>
-                                    <p class="text-2xl font-black text-slate-800 mt-0.5">308,850,000đ</p>
-                                </div>
+                    <!-- Right Column: Illustrative Image -->
+                    <div class="col-span-4 flex flex-col items-center">
+                        <div class="w-full bg-slate-50 border border-slate-200/80 rounded-2xl p-3 flex flex-col justify-between items-center shadow-sm">
+                            <div class="w-full text-center space-y-0.5 mb-2">
+                                <span class="bg-emerald-100 text-emerald-800 text-[8px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">Thu phí tự động không dừng</span>
+                                <h4 class="font-bold text-slate-800 text-xs mt-1">ePass & VETC tại BV Nhi</h4>
                             </div>
-                        </div>
-
-                        <div class="space-y-2">
-                            <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wide">Giá Trị Doanh Nghiệp
-                                Thực Tế Mang Lại:</h4>
-                            <div class="grid grid-cols-2 gap-3 text-[10px] text-slate-600 font-medium">
-                                <div class="bg-slate-50 p-2.5 rounded-xl">
-                                    <span class="font-extrabold text-blue-700 block">Thời gian xử lý cổng</span>
-                                    Giảm từ 12-15 giây xuống <strong>&lt; 3 giây</strong>, giải phóng hoàn toàn tình
-                                    trạng ùn tắc.
-                                </div>
-                                <div class="bg-slate-50 p-2.5 rounded-xl">
-                                    <span class="font-extrabold text-blue-700 block">Minh bạch dòng tiền</span>
-                                    Tự động hóa 100% dòng tiền vào tài khoản, triệt tiêu nguy cơ thất thoát thu ngân thủ
-                                    công.
-                                </div>
+                            <div class="w-full relative overflow-hidden rounded-xl border border-slate-200/60 shadow-sm bg-white aspect-[4/3]">
+                                <img src="images/bv_nhi_etc_payment.png" alt="Thanh toán ePass và VETC" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                             </div>
+                            <p class="text-[8.5px] text-slate-400 text-center leading-tight mt-2.5">
+                                Tự động nhận diện thẻ định danh UHF/RFID giúp xe qua cổng nhanh chóng không dừng
+                            </p>
                         </div>
                     </div>
                 </div>
